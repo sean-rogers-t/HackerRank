@@ -1,0 +1,15 @@
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\bin\Debug\net6.0\RootedTree.exe
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\bin\Debug\net6.0\RootedTree.deps.json
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\bin\Debug\net6.0\RootedTree.runtimeconfig.json
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\bin\Debug\net6.0\RootedTree.dll
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\bin\Debug\net6.0\RootedTree.pdb
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\obj\Debug\net6.0\RootedTree.csproj.AssemblyReference.cache
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\obj\Debug\net6.0\RootedTree.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\obj\Debug\net6.0\RootedTree.AssemblyInfoInputs.cache
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\obj\Debug\net6.0\RootedTree.AssemblyInfo.cs
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\obj\Debug\net6.0\RootedTree.csproj.CoreCompileInputs.cache
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\obj\Debug\net6.0\RootedTree.dll
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\obj\Debug\net6.0\refint\RootedTree.dll
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\obj\Debug\net6.0\RootedTree.pdb
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\obj\Debug\net6.0\RootedTree.genruntimeconfig.cache
+C:\Users\sean.rogers\source\repos\HackerRank\RootedTree\RootedTree\obj\Debug\net6.0\ref\RootedTree.dll

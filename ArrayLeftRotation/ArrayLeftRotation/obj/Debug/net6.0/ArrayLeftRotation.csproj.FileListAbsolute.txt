@@ -1,0 +1,15 @@
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\bin\Debug\net6.0\ArrayLeftRotation.exe
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\bin\Debug\net6.0\ArrayLeftRotation.deps.json
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\bin\Debug\net6.0\ArrayLeftRotation.runtimeconfig.json
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\bin\Debug\net6.0\ArrayLeftRotation.dll
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\bin\Debug\net6.0\ArrayLeftRotation.pdb
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\obj\Debug\net6.0\ArrayLeftRotation.csproj.AssemblyReference.cache
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\obj\Debug\net6.0\ArrayLeftRotation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\obj\Debug\net6.0\ArrayLeftRotation.AssemblyInfoInputs.cache
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\obj\Debug\net6.0\ArrayLeftRotation.AssemblyInfo.cs
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\obj\Debug\net6.0\ArrayLeftRotation.csproj.CoreCompileInputs.cache
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\obj\Debug\net6.0\ArrayLeftRotation.dll
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\obj\Debug\net6.0\refint\ArrayLeftRotation.dll
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\obj\Debug\net6.0\ArrayLeftRotation.pdb
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\obj\Debug\net6.0\ArrayLeftRotation.genruntimeconfig.cache
+C:\Users\sean.rogers\source\repos\HackerRank\ArrayLeftRotation\ArrayLeftRotation\obj\Debug\net6.0\ref\ArrayLeftRotation.dll

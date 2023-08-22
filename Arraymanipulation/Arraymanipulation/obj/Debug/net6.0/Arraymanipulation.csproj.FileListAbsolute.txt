@@ -1,0 +1,15 @@
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\bin\Debug\net6.0\Arraymanipulation.exe
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\bin\Debug\net6.0\Arraymanipulation.deps.json
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\bin\Debug\net6.0\Arraymanipulation.runtimeconfig.json
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\bin\Debug\net6.0\Arraymanipulation.dll
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\bin\Debug\net6.0\Arraymanipulation.pdb
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\obj\Debug\net6.0\Arraymanipulation.csproj.AssemblyReference.cache
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\obj\Debug\net6.0\Arraymanipulation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\obj\Debug\net6.0\Arraymanipulation.AssemblyInfoInputs.cache
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\obj\Debug\net6.0\Arraymanipulation.AssemblyInfo.cs
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\obj\Debug\net6.0\Arraymanipulation.csproj.CoreCompileInputs.cache
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\obj\Debug\net6.0\Arraymanipulation.dll
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\obj\Debug\net6.0\refint\Arraymanipulation.dll
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\obj\Debug\net6.0\Arraymanipulation.pdb
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\obj\Debug\net6.0\Arraymanipulation.genruntimeconfig.cache
+C:\Users\sean.rogers\source\repos\HackerRank\Arraymanipulation\Arraymanipulation\obj\Debug\net6.0\ref\Arraymanipulation.dll

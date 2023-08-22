@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayLeftRotation", "ArrayLeftRotation\ArrayLeftRotation.csproj", "{FFE7BD9C-DDAC-42E7-8BE1-4DFE05323E1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFE7BD9C-DDAC-42E7-8BE1-4DFE05323E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE7BD9C-DDAC-42E7-8BE1-4DFE05323E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE7BD9C-DDAC-42E7-8BE1-4DFE05323E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE7BD9C-DDAC-42E7-8BE1-4DFE05323E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {892B38F0-CA2E-43B7-A25E-7D40CF623A2E}
+	EndGlobalSection
+EndGlobal
