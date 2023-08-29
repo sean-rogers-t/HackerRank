@@ -10,7 +10,7 @@ class TreeNode<T>
     public TreeNode<T> Parent { get; set; }
     public List<TreeNode<T>> Children { get; } = new List<TreeNode<T>>();
 
-    public List<TreeNode<T>> Descendants { get; private set; }
+    public List<TreeNode<T>> Descendants { get; } = new List<TreeNode<T>>();
 
     public TreeNode(T nodeNumber, int value = 0)
     {
@@ -24,17 +24,14 @@ class TreeNode<T>
     {
         child.Parent = this;
         Children.Add(child);
-        Descendants.Add(child);
+        Descendants.AddRange(child.Descendants);
         TreeNode<T> dummyParent = Parent; 
         while (dummyParent != null)
         {
-            dummyParent.Descendants.Add(child);
+            dummyParent.Descendants.AddRange(child.Descendants);
             dummyParent = dummyParent.Parent;
         }
-        /*foreach (var descendant in child.GetDescendants())
-        {
-            descendant.Descendants.Add(descendant);
-        }*/
+        
     }
 
     public int DistanceTo(TreeNode<T> target)
