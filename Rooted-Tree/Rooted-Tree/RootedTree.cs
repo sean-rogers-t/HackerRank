@@ -7,23 +7,23 @@ class TreeNode
 {
     public int NodeNumber { get; }
     public int Value { get; set; }
+    public bool Passed {get; set;}
     public TreeNode Parent { get; set; }
     public List<TreeNode> Children { get; } = new List<TreeNode>();
 
     
 
-    public TreeNode(int nodeNumber, int value = 0)
+    public TreeNode(int nodeNumber, int value = 0, bool passed = false)
     {
         NodeNumber = nodeNumber;
         Value = value;
+        Passed = passed;
     }
 
     public void AddChild(TreeNode child)
     {
         child.Parent = this;
         Children.Add(child);
-        
-        
     }
 
 }
@@ -65,72 +65,62 @@ class RootedTree
     private int[] depth;  // Store the depth of each node
     private int maxLog;  // Maximum value of log2(N)
     private FenwickTree fenwickTree;
+    private  List<int>[] adjMatrix;
+    Dictionary<int, TreeNode> nodes= new Dictionary<int, TreeNode>();
+    public int[] dfnl;
+    public int[] dfnr;
+
+    private int tick = 0;
     public RootedTree(int rootNumber, int nodeCount, int[][] edges, int rootValue = 0)
     {
+        dfnl = new int[nodeCount+ 1];
+        dfnr = new int[nodeCount+1];
         Root = new TreeNode(rootNumber, rootValue);
+        nodes.Add(rootNumber, Root);
         maxLog = (int)Math.Ceiling(Math.Log(nodeCount, 2));
         up = new int[nodeCount + 1, maxLog + 1];  // Assuming 1-based node numbering
         depth = new int[nodeCount + 1];
         fenwickTree = new FenwickTree(nodeCount * 2);
-        var nodes = GetNodeList(rootNumber, nodeCount);
-        InitializeTree(nodes, edges, rootNumber);
+        adjMatrix = new List<int>[edges.Length + 2];
+        InitializeTree(edges);
         Precompute(rootNumber, Root, null);
     }
-
-    private Dictionary<int, TreeNode> GetNodeList(int rootNumber, int numNodes)
+    
+    private void InitializeTree(int[][] edges)
     {
-        Dictionary<int, TreeNode> nodes = new Dictionary<int, TreeNode>();
-        for (int i = 1; i <= numNodes; i++)
+        for (int i = 0; i < edges.Length + 2; i++)
         {
-            if (i != rootNumber)
-            {
-                nodes.Add(i, new TreeNode(i));
-            }
+            adjMatrix[i] = new List<int>();
         }
-        return nodes;
-    }
-
-    private void InitializeTree(Dictionary<int, TreeNode> nodes, int[][] edges, int rootNumber)
-    {
-        bool beforeRoot = true;
-        for (int i = 0; i < edges.Length; i++)
+        foreach (var edge in edges)
         {
-            int firstNum = edges[i][0];
-            int secondNum = edges[i][1];
-
-            if (firstNum == rootNumber || secondNum == rootNumber)
-            {
-                TreeNode childNode = firstNum == rootNumber ? nodes[secondNum] : nodes[firstNum];
-                Root.AddChild(childNode);
-                beforeRoot = false;
-            }
-            else if (!beforeRoot)
-            {
-                TreeNode currNode = nodes[firstNum];
-                currNode.AddChild(nodes[secondNum]);
-            }
-            else if (beforeRoot)
-            {
-                nodes[secondNum].AddChild(nodes[firstNum]);
-            }
+            adjMatrix[edge[0]].Add(edge[1]);
+            adjMatrix[edge[1]].Add(edge[0]);
         }
+        
     }
-
     public void Precompute(int nodeNumber, TreeNode node, TreeNode parent)
     {
+        dfnl[nodeNumber] = tick++;
         up[nodeNumber, 0] = parent?.NodeNumber ?? -1;
         depth[nodeNumber] = parent == null ? 0 : depth[parent.NodeNumber] + 1;
-
         for (int i = 1; i <= maxLog; i++)
         {
             int ancestor = up[nodeNumber, i - 1];
             up[nodeNumber, i] = ancestor == -1 ? -1 : up[ancestor, i - 1];
         }
 
-        foreach (var child in node.Children)
+        foreach (var adjNode in adjMatrix[nodeNumber])
         {
-            Precompute(child.NodeNumber, child, node);
+            if(adjNode != parent?.NodeNumber)
+            {
+                TreeNode child = new TreeNode(adjNode);
+                node.AddChild(child);
+                nodes.Add(adjNode, child);
+                Precompute(child.NodeNumber, child, node);
+            }
         }
+        dfnr[nodeNumber] = tick;
     }
 
    
@@ -182,30 +172,7 @@ class RootedTree
             tour.Add(node.NodeNumber);
         }
     }
-    public void UpdateOperation(int T, int V, int K)
-    {
-        // Update the target node T
-        fenwickTree.Update(T, V);
-
-        // Update the descendants of T
-        UpdateDescendants(Root, T, V, K, 0);
-    }
-
-    private void UpdateDescendants(TreeNode node, int T, int V, int K, int currentDepth)
-    {
-        depth[node.NodeNumber] = currentDepth;
-
-        foreach (var child in node.Children)
-        {
-            int d = depth[child.NodeNumber] - depth[T];
-            if (d >= 0)
-            {
-                int updateValue = V + d * K;
-                fenwickTree.Update(child.NodeNumber, updateValue);
-            }
-            UpdateDescendants(child, T, V, K, currentDepth + 1);
-        }
-    }
+    
 }
 
 
@@ -220,7 +187,7 @@ class Solution
     {
 
     }
-    /*static void Main(String[] args)
+    static void Main(String[] args)
     {
         string[] firstMultipleInput = Console.ReadLine().TrimEnd().Split(' ');
         int numNodes = Convert.ToInt32(firstMultipleInput[0]);
@@ -267,7 +234,7 @@ class Solution
                 int T = operations[i][0];
                 int V = operations[i][1];
                 int K = operations[i][2];
-                Update(tree, T, V, K);
+                Update( tree,T, V, K);
 
 
 
@@ -280,5 +247,5 @@ class Solution
             }
         }
         Console.ReadLine();
-    }*/
+    }
 }
