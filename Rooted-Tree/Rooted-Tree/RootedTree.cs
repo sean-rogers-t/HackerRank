@@ -38,7 +38,7 @@ class FenwickTree
 
     public void Update(int i, int val)
     {
-        i++;  // Convert 0-based index to 1-based index
+        //i++;  // Convert 0-based index to 1-based index
         while (i < tree.Length)
         {
             tree[i] += val;
@@ -48,7 +48,7 @@ class FenwickTree
 
     public int Query(int i)
     {
-        i++;  // Convert 0-based index to 1-based index
+        //i++;  // Convert 0-based index to 1-based index
         int sum = 0;
         while (i > 0)
         {
@@ -69,7 +69,7 @@ class RootedTree
     Dictionary<int, TreeNode> nodes= new Dictionary<int, TreeNode>();
     public int[] dfnl;
     public int[] dfnr;
-
+    private Dictionary<int, int> dfsToNodeMapping = new Dictionary<int, int>();
     private int tick = 0;
     public RootedTree(int rootNumber, int nodeCount, int[][] edges, int rootValue = 0)
     {
@@ -84,6 +84,7 @@ class RootedTree
         adjMatrix = new List<int>[edges.Length + 2];
         InitializeTree(edges);
         Precompute(rootNumber, Root, null);
+        int k = 1;
     }
     
     private void InitializeTree(int[][] edges)
@@ -102,6 +103,7 @@ class RootedTree
     public void Precompute(int nodeNumber, TreeNode node, TreeNode parent)
     {
         dfnl[nodeNumber] = tick++;
+        dfsToNodeMapping[dfnl[nodeNumber]] = nodeNumber;
         up[nodeNumber, 0] = parent?.NodeNumber ?? -1;
         depth[nodeNumber] = parent == null ? 0 : depth[parent.NodeNumber] + 1;
         for (int i = 1; i <= maxLog; i++)
@@ -121,6 +123,7 @@ class RootedTree
             }
         }
         dfnr[nodeNumber] = tick;
+        dfsToNodeMapping[dfnr[nodeNumber]] = nodeNumber;
     }
 
    
@@ -150,6 +153,66 @@ class RootedTree
 
         return up[u, 0];
     }
+    public void Update(int T, int V, int K)
+    {
+        // Step 1: Identify the range of descendants using dfnl and dfnr
+        int left = dfnl[T];
+        int right = dfnr[T];
+
+        // Step 2: Update the range using Fenwick Tree
+        for (int i = left; i <= right; i++)
+        {
+            // Here, you might want to map 'i' back to the actual node number
+            // to find its depth. Let's assume you have a method GetNodeNumber(i)
+            // that does this.
+            int nodeNumber = GetNodeNumber(i);
+
+            // Calculate d, the depth difference
+            int d = depth[nodeNumber] - depth[T];
+
+            // Calculate the amount to update
+            int amount = V + d * K;
+
+            // Update Fenwick tree
+            fenwickTree.Update(i, amount);
+        }
+    }
+    public int Query(int A, int B)
+    {
+        // Step 1: Find the Lowest Common Ancestor (LCA) of A and B
+        int lca = FindLCA(A, B);
+
+        // Step 2: Query the path from A to LCA and from B to LCA
+        int sumAtoLCA = QueryPath(A, lca);
+        int sumBtoLCA = QueryPath(B, lca);
+
+        // Step 3: Sum up the two paths, but avoid counting LCA twice
+        int lcaValue = fenwickTree.Query(dfnl[lca]);  // Assuming Query returns the value at a specific index
+        int totalSum = sumAtoLCA + sumBtoLCA - lcaValue;
+
+        return totalSum;
+    }
+
+    private int QueryPath(int start, int end)
+    {
+        int sum = 0;
+        int current = start;
+
+        // Traverse upwards from 'start' to 'end', querying the Fenwick Tree at each step
+        while (current != end)
+        {
+            sum += fenwickTree.Query(dfnl[current]);
+            current = up[current, 0];  // Move to the parent, assuming up[][] is your binary lifting table
+        }
+
+        return sum;
+    }
+    public int GetNodeNumber(int dfsNumber)
+    {
+        return dfsToNodeMapping[dfsNumber];
+    }
+
+
 
     public List<int> EulerTour()
     {
@@ -179,14 +242,6 @@ class RootedTree
 class Solution
 {
     
-    static void Update(RootedTree tree, int U, int V, int K)
-    {
-        
-    }
-    static void Query(RootedTree tree, int A, int B)
-    {
-
-    }
     static void Main(String[] args)
     {
         string[] firstMultipleInput = Console.ReadLine().TrimEnd().Split(' ');
@@ -211,39 +266,19 @@ class Solution
         for(int i = 0; i < numQueries; i++)
         {
             string[] query = Console.ReadLine().TrimEnd().Split(' ');
-            if (query[0]=="U")
+            if (query[0] == "U")
             {
                 int T = Convert.ToInt32(query[1]);
                 int V = Convert.ToInt32(query[2]);
                 int K = Convert.ToInt32(query[3]);
-                operations[i] = new int[3] { T, V, K };
+                tree.Update(T, V, K);
             }
-            if (query[0]=="Q") 
-            { 
+            if (query[0] == "Q")
+            {
                 int A = Convert.ToInt32(query[1]);
                 int B = Convert.ToInt32(query[2]);
-                operations[i] = new int[2] { A, B};
-            }
-        }
-
-
-        for (int i = 0; i < operations.Length; i++)
-        {
-            if (operations[i].Length == 3)
-            {
-                int T = operations[i][0];
-                int V = operations[i][1];
-                int K = operations[i][2];
-                Update( tree,T, V, K);
-
-
-
-            }
-            if (operations[i].Length == 2)
-            {
-                int A = operations[i][0];
-                int B = operations[i][1];
-                Query(tree, A, B);
+                int result = tree.Query(A, B);
+                Console.WriteLine(result);
             }
         }
         Console.ReadLine();
