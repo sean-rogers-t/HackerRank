@@ -70,7 +70,7 @@ class RootedTree
     public int[] dfnl;
     public int[] dfnr;
     private Dictionary<int, int> dfsToNodeMapping = new Dictionary<int, int>();
-    private int tick = 0;
+    private int tick = 1;
     public RootedTree(int rootNumber, int nodeCount, int[][] edges, int rootValue = 0)
     {
         dfnl = new int[nodeCount+ 1];
@@ -80,7 +80,7 @@ class RootedTree
         maxLog = (int)Math.Ceiling(Math.Log(nodeCount, 2));
         up = new int[nodeCount + 1, maxLog + 1];  // Assuming 1-based node numbering
         depth = new int[nodeCount + 1];
-        fenwickTree = new FenwickTree(nodeCount * 2);
+        fenwickTree = new FenwickTree(nodeCount);
         adjMatrix = new List<int>[edges.Length + 2];
         InitializeTree(edges);
         Precompute(rootNumber, Root, null);
@@ -123,7 +123,7 @@ class RootedTree
             }
         }
         dfnr[nodeNumber] = tick;
-        dfsToNodeMapping[dfnr[nodeNumber]] = nodeNumber;
+        //dfsToNodeMapping[dfnr[nodeNumber]] = nodeNumber;
     }
 
    
@@ -160,7 +160,7 @@ class RootedTree
         int right = dfnr[T];
 
         // Step 2: Update the range using Fenwick Tree
-        for (int i = left; i <= right; i++)
+        for (int i = left; i < right; i++)
         {
             // Here, you might want to map 'i' back to the actual node number
             // to find its depth. Let's assume you have a method GetNodeNumber(i)
@@ -182,6 +182,27 @@ class RootedTree
         // Step 1: Find the Lowest Common Ancestor (LCA) of A and B
         int lca = FindLCA(A, B);
 
+        // Step 2: Query the path from A to LCA
+        int dfsNumberOfA = dfsToNodeMapping[A];
+        int dfsNumberOfLCA = dfsToNodeMapping[lca];
+        int sumAtoLCA = fenwickTree.Query(dfsNumberOfA) - fenwickTree.Query(dfsNumberOfLCA - 1);
+
+        // Step 3: Query the path from B to LCA
+        int dfsNumberOfB = dfsToNodeMapping[B];
+        int sumBtoLCA = fenwickTree.Query(dfsNumberOfB) - fenwickTree.Query(dfsNumberOfLCA - 1);
+
+        // Step 4: Combine the sums and avoid double-counting the LCA
+        int lcaValue = fenwickTree.Query(dfsNumberOfLCA) - fenwickTree.Query(dfsNumberOfLCA - 1);
+        int totalSum = sumAtoLCA + sumBtoLCA - lcaValue;
+
+        return totalSum;
+    }
+
+    /*public int Query(int A, int B)
+    {
+        // Step 1: Find the Lowest Common Ancestor (LCA) of A and B
+        int lca = FindLCA(A, B);
+
         // Step 2: Query the path from A to LCA and from B to LCA
         int sumAtoLCA = QueryPath(A, lca);
         int sumBtoLCA = QueryPath(B, lca);
@@ -191,7 +212,7 @@ class RootedTree
         int totalSum = sumAtoLCA + sumBtoLCA - lcaValue;
 
         return totalSum;
-    }
+    }*/
 
     private int QueryPath(int start, int end)
     {
