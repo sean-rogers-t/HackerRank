@@ -149,23 +149,22 @@ class PSolution
         }
         int tm = 0;
         Dfs(r, 0, 0, ref tm);
-        for (int i = 0; i < e; ++i)
+        for (int i = 0; i < e; i++)
         {
-            char c = Console.ReadLine()[0];
-            if (c == 'U')
+            string[] query = Console.ReadLine().TrimEnd().Split(' ');
+            if (query[0] == "U")
             {
-                string[] inputs = Console.ReadLine().Split(' ');
-                int t = int.Parse(inputs[0]);
-                long v = long.Parse(inputs[1]);
-                long k = long.Parse(inputs[2]);
-                Update(t, v, k);
+                int T = Convert.ToInt32(query[1]);
+                int V = Convert.ToInt32(query[2]);
+                int K = Convert.ToInt32(query[3]);
+                Update(T, V, K);
             }
-            else
+            if (query[0] == "Q")
             {
-                string[] inputs = Console.ReadLine().Split(' ');
-                int a = int.Parse(inputs[0]);
-                int b = int.Parse(inputs[1]);
-                Console.WriteLine(Query(a, b));
+                int A = Convert.ToInt32(query[1]);
+                int B = Convert.ToInt32(query[2]);
+                long result = Query(A, B);
+                Console.WriteLine(result);
             }
         }
     }
