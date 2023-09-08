@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sean\\HackerRank\\Rooted-Tree\\Rooted-Tree\\Rooted-Tree.csproj": {}
+    "C:\\Users\\sean.rogers\\Coding\\HackerRank\\Rooted-Tree\\Rooted-Tree\\Rooted-Tree.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sean\\HackerRank\\Rooted-Tree\\Rooted-Tree\\Rooted-Tree.csproj": {
+    "C:\\Users\\sean.rogers\\Coding\\HackerRank\\Rooted-Tree\\Rooted-Tree\\Rooted-Tree.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sean\\HackerRank\\Rooted-Tree\\Rooted-Tree\\Rooted-Tree.csproj",
+        "projectUniqueName": "C:\\Users\\sean.rogers\\Coding\\HackerRank\\Rooted-Tree\\Rooted-Tree\\Rooted-Tree.csproj",
         "projectName": "Rooted-Tree",
-        "projectPath": "C:\\Users\\Sean\\HackerRank\\Rooted-Tree\\Rooted-Tree\\Rooted-Tree.csproj",
-        "packagesPath": "C:\\Users\\Sean\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sean\\HackerRank\\Rooted-Tree\\Rooted-Tree\\obj\\",
+        "projectPath": "C:\\Users\\sean.rogers\\Coding\\HackerRank\\Rooted-Tree\\Rooted-Tree\\Rooted-Tree.csproj",
+        "packagesPath": "C:\\Users\\sean.rogers\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sean.rogers\\Coding\\HackerRank\\Rooted-Tree\\Rooted-Tree\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Sean\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\sean.rogers\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -49,7 +48,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     }
