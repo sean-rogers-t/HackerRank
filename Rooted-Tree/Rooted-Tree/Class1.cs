@@ -141,7 +141,7 @@ public class OSolution
         Upd(fenwick[0], l, r, (int)((dep[u] * (dep[u] - 1L) * y + 2 * (1L - dep[u]) * x) % MOD));
     }
 
-    /*public static void Main(string[] args)
+    public static void Main(string[] args)
     {
         StreamReader reader = new StreamReader(Console.OpenStandardInput());
         StreamWriter writer = new StreamWriter(Console.OpenStandardOutput());
@@ -211,5 +211,5 @@ public class OSolution
         }
 
         writer.Flush();
-    }*/
+    }
 }
