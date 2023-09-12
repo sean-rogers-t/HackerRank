@@ -6,7 +6,7 @@
     <RootNamespace>Rooted_Tree</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>PSolution</StartupObject>
+    <StartupObject>Tree.BSolution</StartupObject>
   </PropertyGroup>
 
 </Project>
