@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace Tree
 {
@@ -65,6 +66,9 @@ namespace Tree
         private int[] depth;  // Store the depth of each node
         private int maxLog;  // Maximum value of log2(N)
         private FenwickTree fenwickTree;
+        private FenwickTree square;
+        private FenwickTree linear;
+        private FenwickTree constant;
         private List<int>[] adjMatrix;
         Dictionary<int, TreeNode> nodes = new Dictionary<int, TreeNode>();
         public int[] dfnl;
@@ -81,6 +85,9 @@ namespace Tree
             up = new int[nodeCount + 1, maxLog + 1];  // Assuming 1-based node numbering
             depth = new int[nodeCount + 1];
             fenwickTree = new FenwickTree(2 * nodeCount);
+            square = new FenwickTree(2 * nodeCount);
+            linear = new FenwickTree(2 * nodeCount);
+            constant = new FenwickTree(2 * nodeCount);
             adjMatrix = new List<int>[edges.Length + 2];
             InitializeTree(edges);
             Precompute(rootNumber, Root, null);
@@ -164,6 +171,24 @@ namespace Tree
             fenwickTree.Update(l, value);
             fenwickTree.Update(r , -value);
         }
+        public void Update(int node, int K, int V)
+        {
+            int l = dfnl[node];
+            int r = dfnr[node];
+            int p = depth[node];
+            square.Update(l, K);
+            square.Update(r, -K);
+            linear.Update(l, K-2*K*p+2*V);
+            linear.Update(r, -(K - 2 * K * p + 2 * V));
+            constant.Update(l, p*(p-1)*K+2*(1-p)*V);
+            constant.Update(r, -(p * (p - 1) * K + 2 * (1 - p) * V));
+            square.Update(l, K);
+            square.Update(r, -K);
+            linear.Update(l, K - 2 * K * p + 2 * V);
+            linear.Update(r, -(K - 2 * K * p + 2 * V));
+            constant.Update(l,  (p*p - p) * K + 2 * (1 - p) * V);
+            constant.Update(r, -((p*p - p) * K + 2 * (1 - p) * V));
+        }
         public int Query(int u, int v)
         {
             int lca = FindLCA(u, v);
@@ -175,24 +200,47 @@ namespace Tree
                 - lcaToRoot - pToRoot;
             return sum;
         }
+        public double _Query(int u)
+        {
+            int c = depth[u];
+            int l = dfnl[u];
+            double ok = (c*c*square.Query(l)+c*linear.Query(l)+constant.Query(l))/2;
+            return ok;
+        }
+        public double PolyQuery(int u, int v)
+        {
+            int lca = FindLCA(u, v);
+            double uToRoot = _Query(u);
+            double vToRoot = _Query(v);
+            double lcaToRoot = _Query(lca);
+            double pToRoot = _Query(up[lca, 0]);
+            double sum = uToRoot + vToRoot
+                - lcaToRoot - pToRoot;
+            return sum;
+        }
     }
     class BSolution
     {
         static void Main(string[] args)
         {
-            int[][] edges = new int[4][];
+            int[][] edges = new int[5][];
+
             edges[0] = new int[2] { 1, 2 };
             edges[1] = new int[2] { 2, 3 };
             edges[2] = new int[2] { 2, 4 };
             edges[3] = new int[2] { 2, 5 };
-            RootedTree tree = new RootedTree(1, 5, edges);
+            edges[4] = new int[2] { 6, 1 };
+            RootedTree tree = new RootedTree(6, 6, edges);
             int[] values = new int[5] { 1, 2, 3, 4, 5 };
             foreach (int v in values)
             {
                 tree.Update(v, v);
             }
             int ans = tree.Query(3, 5);
+            tree.Update(1, 2, 2);
+            double ans2 = tree.PolyQuery(3, 5);
             Console.WriteLine(ans);
+            Console.WriteLine(ans2);
             Console.ReadLine();
         }
     }
