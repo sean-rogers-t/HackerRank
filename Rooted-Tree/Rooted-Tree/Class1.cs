@@ -207,6 +207,7 @@ public class OSolution
             {
                 int w = int.Parse(input[3]);
                 Update(u, v, w);
+                int k = 1;
             }
         }
 
